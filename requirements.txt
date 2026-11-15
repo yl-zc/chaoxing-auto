@@ -1,0 +1,25 @@
+# 学习通自动化 便携包运行依赖（版本记录）
+# 说明：本包已内置便携 Python 3.13.9 与其 site-packages，双击即可运行。
+#       以下依赖不需要重新安装，也不要在运行机上联网 pip install（环境纪律）。
+#       源 venv：work/.venv（engine+console） 与 D:/pyai/pych/.venv（pipeline），
+#       已合并进 runtime/python/Lib/site-packages。
+
+# ---- engine（浏览器自动化 / CDP）----
+playwright==1.64.1
+websocket-client==1.9.2
+
+# ---- console（FastAPI 控制台）----
+fastapi==0.162.1
+uvicorn==0.54.0
+python-docx==1.2.0
+pypdf==7.0.0
+
+# ---- pipeline（本地模型答题）----
+llama_cpp_python==0.3.34
+pillow==12.3.0
+numpy==2.5.2
+
+# ---- 运行时 ----
+# Python 3.13.9（便携版，已内置 runtime/python）
+# 浏览器：使用系统 Chrome（首选）/ Microsoft Edge（回退），不下载浏览器
+# 模型：已内置 runtime/models（约 3.18GB，Qwen3-VL-4B-Instruct-Q4_K_M + mmproj F16）

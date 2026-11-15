@@ -1,0 +1,42 @@
+# ===== 运行时不入库（体积大 / 与环境相关） =====
+runtime/
+models/
+*.gguf
+
+# ===== 运行产物 / 日志 / 证据 =====
+logs/
+runs/
+plans/
+*.log
+engine/runs/
+engine/logs/
+engine/.locks/
+engine/daemon.log
+engine/daemon.stdout.log
+console/state.json
+console/state.cmd.json
+console/plans/
+console/stop.json
+console/stop-request.json
+engine/queue_state.jsonl
+
+# ===== 浏览器 profile / 登录态（含 Cookie，绝不入库） =====
+profile/
+browser-profile/
+runtime/browser-profile/
+
+# ===== Python 缓存 / 虚拟环境 =====
+__pycache__/
+*.py[cod]
+*.pyd
+.venv/
+venv/
+env/
+*.egg-info/
+
+# ===== 编辑器 / 系统 =====
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,30 @@
+{
+  "session": "1.2",
+  "questions": [
+    {
+      "index": 1,
+      "image": "E:\\DSH\\project\\学习通自动化\\work\\stage-d\\auto-1.2\\evidence\\q1.png",
+      "dom_type": "单选题"
+    },
+    {
+      "index": 2,
+      "image": "E:\\DSH\\project\\学习通自动化\\work\\stage-d\\auto-1.2\\evidence\\q2.png",
+      "dom_type": "单选题"
+    },
+    {
+      "index": 3,
+      "image": "E:\\DSH\\project\\学习通自动化\\work\\stage-d\\auto-1.2\\evidence\\q3.png",
+      "dom_type": "单选题"
+    },
+    {
+      "index": 4,
+      "image": "E:\\DSH\\project\\学习通自动化\\work\\stage-d\\auto-1.2\\evidence\\q4.png",
+      "dom_type": "多选题"
+    },
+    {
+      "index": 5,
+      "image": "E:\\DSH\\project\\学习通自动化\\work\\stage-d\\auto-1.2\\evidence\\q5.png",
+      "dom_type": "多选题"
+    }
+  ]
+}

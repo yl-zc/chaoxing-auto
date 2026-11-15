@@ -1,0 +1,62 @@
+{
+  "schema": "chaoxing-answer/1",
+  "engine": {
+    "model": "Qwen3-VL-4B-Instruct-Q4_K_M",
+    "backend": "text_only"
+  },
+  "answers": [
+    {
+      "index": 1,
+      "type": "单选题",
+      "value": [
+        "A"
+      ],
+      "confidence": 0.9,
+      "reason": "党的领导是最本质特征"
+    },
+    {
+      "index": 2,
+      "type": "单选题",
+      "value": [
+        "D"
+      ],
+      "confidence": 0.9,
+      "reason": "八项规定是徙木立信之举"
+    },
+    {
+      "index": 3,
+      "type": "单选题",
+      "value": [
+        "C"
+      ],
+      "confidence": 0.9,
+      "reason": "社会主义市场经济不在十四个坚持"
+    },
+    {
+      "index": 4,
+      "type": "多选题",
+      "value": [
+        "B",
+        "C",
+        "D"
+      ],
+      "confidence": 0.9,
+      "reason": "信仰之基/思想之舵/精神之钙"
+    },
+    {
+      "index": 5,
+      "type": "多选题",
+      "value": [
+        "A",
+        "C",
+        "D"
+      ],
+      "confidence": 0.9,
+      "reason": "享乐主义/形式主义/官僚主义"
+    }
+  ],
+  "unknown": [],
+  "meta": {
+    "source": "1.2 实测最终答案（成绩 100 分）"
+  }
+}

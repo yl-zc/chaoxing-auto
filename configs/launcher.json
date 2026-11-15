@@ -1,0 +1,12 @@
+{
+  "port": 8770,
+  "auto_open_browser": true,
+  "start_daemon": true,
+  "heartbeat_grace_s": 20,
+  "heartbeat_interval_s": 5,
+  "on_browser_close": "stop_and_exit",
+  "idle_timeout_s": 0,
+  "keep_daemon_after_close": false,
+  "open_console_via": "default",
+  "_note": "port=控制台端口；auto_open_browser=启动后自动开浏览器；start_daemon=启动队列守护（控制台「开始」才会执行）；heartbeat_grace_s=页面心跳丢失多少秒后安全停止；idle_timeout_s=0 关闭闲置自动退出；on_browser_close=stop_and_exit|keep；open_console_via=default(系统默认浏览器) 或浏览器 exe 绝对路径"
+}

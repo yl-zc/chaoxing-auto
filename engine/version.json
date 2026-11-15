@@ -1,0 +1,33 @@
+{
+  "schema_version": "engine-version/1",
+  "version": "M2.3-20261115",
+  "release": "M2",
+  "built_at": "2026-11-15T20:58:00+0800",
+  "schemas": {
+    "config": "engine-config/1",
+    "state": "engine-state/1",
+    "progress": "engine-progress/1",
+    "queue": "engine-queue/1",
+    "run": "engine-run/1",
+    "preflight": "engine-preflight/1",
+    "index": "engine-index/1",
+    "report": "engine-report/1",
+    "manifest": "engine-manifest/1"
+  },
+  "entrypoints": {
+    "run_section": "run_section.py",
+    "queue_daemon": "queue_daemon.py",
+    "preflight": "preflight.py --json",
+    "selfcheck": "tools/selfcheck.py",
+    "report": "tools/collect_report.py",
+    "package": "tools/package.py"
+  },
+  "features": [
+    "realtime-section-taskcount",
+    "unknown-safety-valve",
+    "skip_quiz",
+    "api-backend-local-api",
+    "portable-runtime",
+    "preflight-display-only"
+  ]
+}

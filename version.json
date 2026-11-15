@@ -1,0 +1,59 @@
+{
+  "schema_version": "package-version/1",
+  "version": "M2.3-20261115",
+  "release": "M2",
+  "built_at": "2026-11-15T12:51:05.193Z",
+  "package_name": "学习通自动化-20261115",
+  "description": "学习通自动化 便携交付包（控制台 + 执行引擎 + 本地模型答题 + 便携 Python 运行时 + 内置模型）",
+  "runtime": {
+    "portable": true,
+    "python": "3.13.9",
+    "path": "runtime/python/python.exe",
+    "note": "由 C:/Users/ylzc/AppData/Local/Programs/Python/Python313 复制，并合并 work/.venv 与 D:/pyai/pych/.venv 的 site-packages"
+  },
+  "models": [
+    {
+      "file": "runtime/models/Qwen3-VL-4B-Instruct-Q4_K_M.gguf",
+      "size": 2497281568,
+      "sha256": "aa18af1fdda59081005319536eebff9406d556ce8a753d9a3aa81cf635eadde7"
+    },
+    {
+      "file": "runtime/models/mmproj-Qwen3-VL-4B-Instruct-F16.gguf",
+      "size": 836180160,
+      "sha256": "1b70e983d69dd424eb16e0ed2104d0b2a58bf01d866657f4de5da6c963620f19"
+    }
+  ],
+  "entrypoints": {
+    "start": "启动学习通自动化.cmd → launcher.py（起 uvicorn 127.0.0.1:8770 + queue_daemon + 打开浏览器）",
+    "stop": "停止.cmd → launcher.py --stop",
+    "selfcheck": "自检.cmd → selfcheck.py",
+    "toggle_skip_quiz": "切换跳过答题.cmd → toggle_skip_quiz.py",
+    "browser": "启动自动化浏览器.cmd（独立 profile + CDP 9222，首次需扫码登录）",
+    "check": "python launcher.py --check（只读自检，不启动服务）"
+  },
+  "features": [
+    "portable-runtime",
+    "portable-models",
+    "skip_quiz",
+    "skip_quiz_toggle_cmd",
+    "launcher-no-focus-steal",
+    "queue-daemon-autostart",
+    "heartbeat-safestop",
+    "manifest-sha256",
+    "realtime-taskpoint-detect",
+    "api-backend-reserved"
+  ],
+  "config": {
+    "engine": "engine/config.json",
+    "engine_template": "configs/engine-config.json",
+    "pipeline": "pipeline/config.json",
+    "launcher": "configs/launcher.json",
+    "answer_default": {
+      "enabled": true,
+      "skip_quiz": false,
+      "min_conf": 0.8
+    }
+  },
+  "engine_version": "M2.3-20261115",
+  "features_note": "pipeline 预留 backend=local|api（默认 local，不发网络请求；包内不含任何密钥）"
+}

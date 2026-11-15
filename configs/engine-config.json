@@ -1,0 +1,155 @@
+{
+  "schema_version": "engine-config/1",
+  "_comment": "M2 单节统一运行器 + 队列守护。所有可变参数集中在本文件；改参数只改这里。",
+  "cdp": {
+    "connect_timeout_s": 15,
+    "page_index": 0,
+    "preflight_timeout_s": 3
+  },
+  "paths": {
+    "pipeline_dir": "pipeline",
+    "console_dir": "console",
+    "plans_dir": "console/plans",
+    "queue_file": "console/plans/queue.jsonl",
+    "state_file": "console/state.json",
+    "cmd_file": "console/state.cmd.json",
+    "runs_dir": "engine/runs",
+    "lock_dir": "engine/.locks",
+    "ledger_file": "engine/queue_state.jsonl",
+    "daemon_log": "engine/daemon.log",
+    "logs_dir": "engine/logs",
+    "index_file": "engine/logs/index.jsonl",
+    "stop_file": "console/stop.json",
+    "stop_request_file": "console/stop-request.json"
+  },
+  "python": {
+    "_comment": "便携包：engine/pipeline 共用包内 runtime/python（相对路径以包根解析，见 engine/common.py）",
+    "pipeline": "runtime/python/python.exe",
+    "engine": "runtime/python/python.exe"
+  },
+  "pipeline": {
+    "runner": "run_pipeline.py",
+    "crop": "crop_boxes.py",
+    "n_threads": 12,
+    "n_ctx": 4096,
+    "min_conf": 0.8,
+    "timeout_s": 1800
+  },
+  "nav": {
+    "wait_chapter_s": 25,
+    "wait_frame_s": 25,
+    "settle_ms": 2500,
+    "poll_ms": 700,
+    "tab_quiz_regex": "章节测验",
+    "next_label": "下一节",
+    "video_tab_regex": "课程视频",
+    "course_name": "形势与政策",
+    "course_entry_wait_s": 20,
+    "task_count_wait_s": 8
+  },
+  "video": {
+    "credit_ratio": 0.9,
+    "marker_ratio": 0.85,
+    "final_ratio": 0.98,
+    "poll_s": 5,
+    "no_progress_s": 60,
+    "timeout_margin": 1.3,
+    "timeout_add_s": 120,
+    "playback_rate": 1,
+    "credit_wait_s": 15
+  },
+  "quiz": {
+    "frame_url_key": "doHomeWorkNew",
+    "settle_ms": 1200,
+    "wait_timu_s": 20,
+    "meta_poll_ms": 500
+  },
+  "capture": {
+    "crop_scale": 1.6,
+    "scroll_wait_ms": 250,
+    "shot_timeout_s": 20
+  },
+  "fill": {
+    "click_method": "dom",
+    "click_wait_ms": 220
+  },
+  "submit": {
+    "button_selector": "a.btnSubmit",
+    "popup_box_id": "workpop",
+    "popup_ok_id": "popok",
+    "confirm_texts": [
+      "提交",
+      "确定"
+    ],
+    "popup_wait_s": 12,
+    "result_url_key": "selectWorkQuestionYiPiYue",
+    "result_wait_s": 28,
+    "result_poll_ms": 900,
+    "click_wait_ms": 1800
+  },
+  "verify": {
+    "read_course_progress": true,
+    "progress_wait_s": 6,
+    "jump_wait_s": 20,
+    "pause_next_video": true
+  },
+  "real": {
+    "enabled": true,
+    "_note": "放行开关：2026-11-08 按用户要求已置 true（用户将亲自在控制台触发真实运行）；改回 false 可收回放行"
+  },
+  "locks": {
+    "section_timeout_s": 120,
+    "daemon_timeout_s": 5
+  },
+  "daemon": {
+    "poll_s": 3,
+    "progress_poll_s": 0.8,
+    "run_section_wait_s": 7200,
+    "max_sections_per_plan": 300
+  },
+  "browser": {
+    "kind": "chrome",
+    "exe_path": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "fallback": {
+      "kind": "edge",
+      "exe_path": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
+    },
+    "user_data_dir": "runtime/browser-profile",
+    "port": 9222,
+    "login_url": "https://i.chaoxing.com/base",
+    "console_url": "http://127.0.0.1:8770/",
+    "launch_args": [
+      "--no-first-run",
+      "--no-default-browser-check"
+    ],
+    "launch_timeout_s": 30,
+    "page_url_allow": [
+      "chaoxing.com"
+    ],
+    "page_url_deny": [
+      "127.0.0.1:8770",
+      "localhost:8770",
+      "chrome://",
+      "edge://",
+      "about:",
+      "devtools://"
+    ],
+    "course_page_hints": [
+      "studentstudy",
+      "mycourse",
+      "knowledge",
+      "mooc"
+    ]
+  },
+  "logging": {
+    "level": "INFO",
+    "max_bytes": 20971520,
+    "backup_count": 3,
+    "_note": "单文件>20MB 自动切分为 .1/.2/.3；全部 UTF-8、URL enc 脱敏"
+  },
+  "answer": {
+    "enabled": true,
+    "skip_quiz": false,
+    "_note": "enabled=是否允许答题模块；skip_quiz=true 时只做视频、不做章节测验/不提交（该节记 skipped_quiz=true 并继续下一节），默认 false"
+  }
+}

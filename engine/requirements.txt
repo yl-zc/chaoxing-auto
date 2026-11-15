@@ -1,0 +1,18 @@
+# 学习通自动化引擎 M2 运行依赖（打包复查用；本项目 venv 已装好，不需要重新安装）
+# ---------- engine（work/.venv）----------
+playwright==1.64.1
+websocket-client==1.9.2
+# ---------- console（work/.venv）----------
+fastapi==0.162.1
+uvicorn==0.54.0
+python-docx==1.2.0
+pypdf==7.0.0
+# ---------- pipeline（D:/pyai/pych/.venv）----------
+llama_cpp_python==0.3.34
+pillow==12.3.0
+numpy==2.5.2
+
+# 说明：
+# - 本机通过已有 venv 运行，禁止联网安装（纪律）。
+# - 浏览器使用系统 Edge/Chrome（见 engine/config.json browser 段），不下载浏览器。
+# - 模型文件不入包：路径见 pipeline/config.json（model / mmproj）。

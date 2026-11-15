@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学习通自动化控制台</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">学</div>
+      <div class="brand-text">
+        <div class="brand-title">学习通自动化</div>
+        <div class="brand-sub">课程助手</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <button class="nav-item active" data-view="chat">AI 对话</button>
+      <button class="nav-item" data-view="overview">总览</button>
+      <button class="nav-item" data-view="tasks">任务板</button>
+      <button class="nav-item" data-view="docs">题目与文档</button>
+      <button class="nav-item" data-view="settings">设置</button>
+    </nav>
+    <div class="sidebar-foot">
+      <span class="dot" id="foot-dot"></span>
+      <span id="foot-text">正在连接…</span>
+    </div>
+  </aside>
+
+  <div class="workspace">
+    <main class="main">
+      <!-- AI 对话（默认首页） -->
+      <section class="view active" id="view-chat">
+        <header class="page-head">
+          <div>
+            <h1>AI 对话</h1>
+            <div class="page-sub">直接告诉我想做到哪里，我来安排</div>
+          </div>
+        </header>
+        <div class="page-note">关闭这个页面会自动结束正在运行的任务并关闭程序</div>
+        <div class="chat-wrap">
+          <div class="chat-log" id="chat-log">
+            <div class="msg assistant">
+              <div class="bubble">你好，我是你的课程助手。想做哪一部分？可以点下面的快捷按钮，也可以直接告诉我想做全部、下一章，还是某几节。</div>
+            </div>
+          </div>
+          <div class="chat-compose">
+            <div class="quick-row">
+              <button class="quick" data-quick="继续下一节">继续下一节</button>
+              <button class="quick" data-quick="做完这一章">做完这一章</button>
+              <button class="quick" data-quick="全部做完">全部做完</button>
+            </div>
+            <div class="input-row">
+              <input id="chat-input" type="text" maxlength="200" autocomplete="off"
+                     placeholder="比如：做完这一章、2.4-3.3、只做测验">
+              <button id="chat-send" class="send-btn">发送</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 总览 -->
+      <section class="view" id="view-overview">
+        <header class="page-head">
+          <h1>总览</h1>
+          <div class="page-sub" id="ov-updated"></div>
+        </header>
+
+        <div class="hero card">
+          <div class="hero-left">
+            <div class="hero-label">课程进度</div>
+            <div class="hero-num" id="ov-progress">—</div>
+            <div class="hero-text" id="ov-progress-text">正在读取…</div>
+            <div class="progress"><div class="progress-fill" id="ov-bar"></div></div>
+          </div>
+          <div class="hero-right">
+            <div class="kv"><span>当前正在做</span><b id="ov-current">—</b></div>
+            <div class="kv"><span>系统状态</span><b id="ov-health" class="ok">—</b></div>
+            <div class="kv"><span>已完成章节</span><b id="ov-done">—</b></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">最近完成</div>
+          <div class="recent" id="ov-recent"><div class="empty">正在读取…</div></div>
+        </div>
+      </section>
+
+      <!-- 任务板 -->
+      <section class="view" id="view-tasks">
+        <header class="page-head">
+          <h1>任务板</h1>
+          <div class="page-sub">点击章节可查看完成截图、成绩与题目</div>
+        </header>
+        <div class="legend">
+          <span><i class="chip completed"></i>已完成</span>
+          <span><i class="chip video_done"></i>进行中</span>
+          <span><i class="chip pending"></i>待开始</span>
+          <span><i class="chip failed"></i>有问题</span>
+        </div>
+        <div id="task-board"><div class="empty">正在读取…</div></div>
+      </section>
+
+      <!-- 题目与文档 -->
+      <section class="view" id="view-docs">
+        <div class="placeholder">
+          <h1>题目与文档</h1>
+          <p>可以在这里导出章节题目，或把外部 AI 给出的答案导入回来。</p>
+          <p class="soon">此功能将在下一个版本开放</p>
+        </div>
+      </section>
+
+      <!-- 设置 -->
+      <section class="view" id="view-settings">
+        <header class="page-head"><h1>设置</h1></header>
+        <div class="card">
+          <div class="card-title">显示</div>
+          <div class="row"><span>界面主题</span><b>浅色</b></div>
+          <div class="row"><span>自动刷新</span><b>每 2 秒</b></div>
+          <div class="page-note">关闭这个页面会自动结束正在运行的任务并关闭程序</div>
+        </div>
+        <div class="card">
+          <details class="advanced">
+            <summary>高级设置（一般不需要修改）</summary>
+            <div class="row"><span>服务地址</span><b id="adv-url">—</b></div>
+            <div class="row"><span>运行框架</span><b id="adv-fw">—</b></div>
+            <div class="row"><span>浏览器连接</span><b id="adv-cdp">—</b></div>
+            <div class="row"><span>答题线程数</span><b>12</b></div>
+            <div class="row"><span>最低可提交把握</span><b>0.8</b></div>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <!-- 右侧常驻小面板（窄屏收起为抽屉） -->
+    <aside class="rail" id="rail">
+      <div class="rail-head">学习进度</div>
+      <div class="rail-card">
+        <div class="rail-label">课程进度</div>
+        <div class="rail-progress"><b id="rail-done">—</b><span>/</span><b id="rail-total">—</b></div>
+        <div class="progress"><div class="progress-fill" id="rail-bar"></div></div>
+        <div class="rail-hint" id="rail-percent">正在读取…</div>
+        <button class="rail-btn rail-refresh" id="rail-refresh" type="button">刷新进度</button>
+      </div>
+      <div class="rail-card">
+        <div class="rail-label">当前项</div>
+        <div class="rail-item">
+          <div class="rail-name" id="rail-current">正在读取…</div>
+          <span class="tag doing" id="rail-current-tag" hidden></span>
+          <div class="rail-sub" id="rail-current-sub" hidden></div>
+          <button class="rail-btn rail-retry" id="rail-retry" type="button" hidden>重试</button>
+        </div>
+      </div>
+      <div class="rail-card">
+        <div class="rail-label">下一项</div>
+        <div class="rail-item">
+          <div class="rail-name" id="rail-next">正在读取…</div>
+          <span class="tag pending" id="rail-next-tag" hidden>待开始</span>
+        </div>
+      </div>
+      <div class="rail-card">
+        <div class="rail-label">系统状态</div>
+        <div class="rail-health"><span class="dot ok" id="rail-dot"></span><span id="rail-health-text">正在连接…</span></div>
+        <button class="rail-btn" id="rail-pause" type="button">暂停</button>
+      </div>
+      <button class="rail-close" id="rail-close">收起</button>
+    </aside>
+  </div>
+</div>
+
+<button class="rail-toggle" id="rail-toggle">进度</button>
+<div class="rail-mask" id="rail-mask"></div>
+
+<!-- 章节详情 -->
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div>
+      <div class="drawer-title" id="drawer-title">章节</div>
+      <div class="drawer-sub" id="drawer-sub"></div>
+    </div>
+    <button class="drawer-close" id="drawer-close">关闭</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</aside>
+
+<!-- 大图 -->
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img" alt="完成截图">
+</div>
+
+<!-- 提示 -->
+<div class="toast" id="toast"></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
